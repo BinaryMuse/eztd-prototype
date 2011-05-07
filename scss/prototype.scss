@@ -5,12 +5,33 @@ $signout_fg:     #cccccc; // FG color for the sign out text
 $signout_border: #414141; // Color for the signout border
 $input_ph_fg:    #d9d9d9; // FG color for the input placeholder text
 $tasks_fg:       #333333; // FG color for the tasks text
+$container_border:   #cccccc; // Color of the tasklist container
+$title_fg:       #696969; // FG color for the title text
 
 $header_height:  44px;    // Height of the header block
+$content_width:  610px;   // Width of the main content area
 
 @mixin snug {
   padding: 0;
   margin: 0;
+}
+
+@mixin round_border($width, $color, $radius, $which: "both") {
+  border: $width solid $color;
+  @if $which == "both" {
+    -moz-border-radius: $radius;
+    border-radius: $radius;
+    } @else if $which == "top" {
+      border-top-left-radius: $radius;
+      -moz-border-top-left-radius: $radius;
+      border-top-right-radius: $radius;
+      -moz-border-top-right-radius: $radius;
+    } @else if $which == "bottom" {
+      border-bottom-left-radius: $radius;
+      -moz-border-bottom-left-radius: $radius;
+      border-bottom-right-radius: $radius;
+      -moz-border-bottom-right-radius: $radius;
+    }
 }
 
 @mixin shadow($params) {
@@ -54,6 +75,44 @@ body {
     text-align: center;
     div {
       padding-top: center_offset($header_height, 12px);
+    }
+  }
+}
+
+#content {
+  width: $content_width;
+  margin: 0 auto;
+
+  h2 {
+    text-align: center;
+    color: $title_fg;
+    font-size: 26px;
+    margin: 30px 0;
+  }
+
+  #container {
+    //border: 5px solid $container_border;
+    @include round_border(5px, $container_border, 10px);
+
+    form {
+      @include round_border(5px, $form_bg, 5px, "top");
+      padding: 15px;
+      background-color: $form_bg;
+      vertical-align: top;
+
+      input[type=text] {
+        font-size: 24px;
+        vertical-align: top;
+        padding: 5px;
+        margin-right: 15px;
+        width: $content_width - 10px - 30px - 15px - 132px - 20px;
+        color: $input_ph_fg;
+      }
+    }
+
+    #tasks {
+      border-top: 1px solid $container_border;
+
     }
   }
 }
