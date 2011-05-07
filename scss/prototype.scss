@@ -13,6 +13,12 @@ $header_height:  44px;    // Height of the header block
   margin: 0;
 }
 
+@mixin shadow($params) {
+  -moz-box-shadow: $params;
+  -webkit-box-shadow: $params;
+  box-shadow: $params;
+}
+
 * {
   @include snug;
 }
@@ -26,6 +32,7 @@ body {
   height: $header_height;
   background-image: url('/images/todolist_nav.png');
   padding-left: center_offset($header_height, 21px);
+  @include shadow(0 0 2px 2px #888);
 
   h1 {
     margin-top: center_offset($header_height, 21px);
@@ -43,10 +50,10 @@ body {
     height: $header_height;
     width: 80px;
     color: $signout_fg;
-    font-size: 10px;
+    font-size: 12px;
     text-align: center;
     div {
-      padding-top: center_offset($header_height, 10px);
+      padding-top: center_offset($header_height, 12px);
     }
   }
 }
