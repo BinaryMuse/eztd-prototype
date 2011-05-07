@@ -1,7 +1,7 @@
 require "bundler/setup"
 
-require "haml"
 require "serve"
+require "./sass_functions"
 
 root  = File.dirname(__FILE__)
 pub   = File.join root, 'public'
