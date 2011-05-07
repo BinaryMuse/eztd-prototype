@@ -1,2 +1,11 @@
 #tasks
-  Tasks here!
+  - # Note: Since Serve doesn't yet support passing data into partials,
+  - # we're just going to render these out here. Ideally we'd use a partial.
+  - tasks.each_with_index do |task, index|
+    - classes = []
+    - classes.push task[:complete] ? "complete" : "incomplete"
+    - classes.push "last" if index == tasks.length - 1
+    #task{:class => classes.join(' ')}
+      %input{:type => "checkbox", :checked => task[:complete] ? "CHECKED" : false}
+      %span.text= task[:text]
+  #last

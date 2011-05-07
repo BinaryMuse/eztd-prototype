@@ -1,15 +1,18 @@
-$body_bg:        #f8f8f8; // BG color for the body
-$form_bg:        #eeeeee; // BG color for the form div
-$header_fg:      #1b1b1b; // FG color for the header text
-$signout_fg:     #cccccc; // FG color for the sign out text
-$signout_border: #414141; // Color for the signout border
-$input_ph_fg:    #d9d9d9; // FG color for the input placeholder text
-$tasks_fg:       #333333; // FG color for the tasks text
-$container_border:   #cccccc; // Color of the tasklist container
-$title_fg:       #696969; // FG color for the title text
+// Color variables
+$body_bg:          #f8f8f8; // BG color for the body
+$form_bg:          #eeeeee; // BG color for the form div
+$header_fg:        #1b1b1b; // FG color for the header text
+$signout_fg:       #cccccc; // FG color for the sign out text
+$signout_border:   #414141; // Color for the signout border
+$input_ph_fg:      #d9d9d9; // FG color for the input placeholder text
+$tasks_fg:         #333333; // FG color for the tasks text
+$complete_fg:      #d9d9d9; // FG color for complete tasks
+$container_border: #cccccc; // Color of the tasklist container
+$title_fg:         #696969; // FG color for the title text
 
-$header_height:  44px;    // Height of the header block
-$content_width:  610px;   // Width of the main content area
+// Size variables
+$header_height:    44px;    // Height of the header block
+$content_width:    610px;   // Width of the main content area
 
 @mixin snug {
   padding: 0;
@@ -51,7 +54,7 @@ body {
 
 #header {
   height: $header_height;
-  background-image: url('/images/todolist_nav.png');
+  background-image: url('/images/todo_right_btn.png');
   padding-left: center_offset($header_height, 21px);
   @include shadow(0 0 2px 2px #888);
 
@@ -66,7 +69,7 @@ body {
     position: absolute;
     right: 0;
     top: 0;
-    background-image: url('/images/todo_right_btn.png');
+    background-image: url('/images/todolist_nav.png');
     border-left: 1px solid $signout_border;
     height: $header_height;
     width: 80px;
@@ -91,28 +94,48 @@ body {
   }
 
   #container {
-    //border: 5px solid $container_border;
     @include round_border(5px, $container_border, 10px);
 
     form {
       @include round_border(5px, $form_bg, 5px, "top");
-      padding: 15px;
+      padding: 15px 15px 10px 15px;
       background-color: $form_bg;
       vertical-align: top;
 
       input[type=text] {
-        font-size: 24px;
+        font-size: 20px;
         vertical-align: top;
-        padding: 5px;
+        padding: 7px;
         margin-right: 15px;
-        width: $content_width - 10px - 30px - 15px - 132px - 20px;
+        width: $content_width - 79px - 132px; // width - borders/paddings/etc - submit image width
         color: $input_ph_fg;
       }
     }
 
     #tasks {
-      border-top: 1px solid $container_border;
+      #task {
+        border-top: 1px solid $complete_fg;
+        padding: 15px 20px;
+        background-color: #fff;
+        color: $tasks_fg;
+        font-size: 14px;
 
+        span {
+          padding-left: 10px;
+        }
+      }
+
+      #task.complete {
+        color: $complete_fg;
+      }
+
+      #task.last {
+        padding-bottom: 5px;
+      }
+
+      #last {
+        @include round_border(5px, #fff, 5px, "bottom");
+      }
     }
   }
 }
