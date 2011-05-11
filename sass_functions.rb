@@ -6,5 +6,5 @@ module Sass::Script::Functions
     div  = diff.div Sass::Script::Number.new(2)
     div.minus Sass::Script::Number.new(2)
   end
-  declare :my_blue, [:number, :number]
+  declare :center_offset, [:number, :number]
 end
